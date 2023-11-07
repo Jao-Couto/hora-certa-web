@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  hora-certa-web:
+    container_name: hora-certa-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      - hora-certa-network
+
+networks:
+  hora-certa-network:
+    external: true
